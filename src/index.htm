@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown to LinkedIn Formatter</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📝 Markdown → LinkedIn</h1>
+      <p>Convert your markdown content to LinkedIn-ready formatted text</p>
+    </div>
+
+    <div class="main-content">
+      <div class="input-section">
+        <h2 class="section-title">Input Markdown</h2>
+        
+        <textarea id="markdownInput" placeholder="Paste your markdown here or load from file...
+
+Example:
+# Main Heading
+## Subheading
+### Sub-subheading
+**Bold text**
+*Italic text*
+__Underlined text__
+~~Strikethrough text~~
+^^^Fancy script text^^^
+- Bullet point 1
+- Bullet point 2
+1. Numbered item
+2. Another item
+> This is a quote
+---
+[Link text](https://example.com)
+`inline code`
+```
+code block
+```"></textarea>
+
+        <div class="character-info">
+          <span id="charCounter" class="char-counter">0 characters</span>
+        </div>
+
+        <!-- Formatting Toolbar -->
+        <div class="formatting-toolbar">
+          <button type="button" class="toolbar-toggle" id="toolbarToggle" title="Show/Hide Formatting Tools">
+            ⚒️ Formatting
+          </button>
+          <div class="toolbar-buttons" id="toolbarButtons">
+            <button type="button" class="format-btn" data-format="bold" title="Bold (**text**)">
+              <strong>B</strong>
+            </button>
+            <button type="button" class="format-btn" data-format="italic" title="Italic (*text*)">
+              <em>I</em>
+            </button>
+            <button type="button" class="format-btn" data-format="h1" title="Heading 1 (# text)">
+              H1
+            </button>
+            <button type="button" class="format-btn" data-format="h2" title="Heading 2 (## text)">
+              H2
+            </button>
+            <button type="button" class="format-btn" data-format="h3" title="Heading 3 (### text)">
+              H3
+            </button>
+            <button type="button" class="format-btn" data-format="bullet" title="Bullet List (- item)">
+              •
+            </button>
+            <button type="button" class="format-btn" data-format="code" title="Inline Code (`text`)">
+              &lt;/&gt;
+            </button>
+            <button type="button" class="format-btn" data-format="codeblock" title="Code Block (```text```)">
+              { }
+            </button>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="file-input">
+            <input type="file" id="fileInput" accept=".md,.txt">
+            <button onclick="document.getElementById('fileInput').click()">Load File</button>
+          </div>
+          <button onclick="convertMarkdown()">Convert</button>
+          <button onclick="clearAll()">Clear</button>
+        </div>
+      </div>
+
+      <div class="output-section">
+        <h2 class="section-title">LinkedIn Ready Output</h2>
+        <div id="output" class="output">Your converted text will appear here...</div>
+
+        <div class="controls">
+          <button onclick="copyOutput()">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>💡 LinkedIn Formatting Tips</h3>
+      <ul>
+        <li>
+          <strong>Bold text:</strong>
+          Uses Unicode bold characters (𝗯𝗼𝗹𝗱)</li>
+        <li>
+          <strong>Italic text:</strong>
+          Uses Unicode italic characters (𝘪𝘵𝘢𝘭𝘪𝘤)</li>
+        <li>
+          <strong>Danish characters:</strong>
+          Supports æ, ø, å in both bold and italic</li>
+        <li>
+          <strong>Bullet points:</strong>
+          Uses • or ▸ for better visibility</li>
+        <li>
+          <strong>Headings:</strong>
+          Converted to bold text with proper spacing</li>
+        <li>
+          <strong>Code:</strong>
+          Wrapped with backticks and monospace styling</li>
+        <li>
+          <strong>Links:</strong>
+          Displayed as "text (URL)" format</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="scripts/unicode-generator.js"></script>
+  <script src="scripts/markdown-parser.js"></script>
+  <script src="scripts/ui-controller.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>
